@@ -1,11 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage("Verify tooling") {
+        stage("Start Docker") {
             steps {
-                sh '''
-                    echo 123
-                '''
+                sh 'make up'
+                sh 'docker compose ps'
+            }
+        }
+        stage("Run Composer Install") {
+            steps {
+                sh 'docker compose run --rm composer install'
+            }
+        }
+        stage("Run Tests") {
+            steps {
+                sh 'docker compose run --rm artisan test'
             }
         }
     }
