@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        node {
-            label 'hiepbui'
-        }
-    }
+    agent any
     stages {
         stage("Verify tooling") {
             steps {
