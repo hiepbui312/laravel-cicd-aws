@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent { 
+        node {
+            label 'hiepbui'
+        }
+    }
     stages {
         stage("Start Docker") {
             steps {
